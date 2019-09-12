@@ -1,2 +1,60 @@
 # C0_Synthesizable
 Synthesizable C0 core.
+
+
+1) This version of C0 has been tested on Altera_DE-1/Cyclone_II. Some bugs have been dealt with. This version now works
+   on one instruction-per-clock-cycle and uses only one clock (as opposed to the previous implementation, that needed 2
+   clock cycles per instruction).
+2) The entire system is negedge triggered and  cannot be made to work by simply changing the negedge
+   flipflops with posedge flipflops. This is because the enables used in the system (REGBANK etc.) are
+   synchronous. (Gated Clocks: AND gates with EN and CLK).
+   
+   [This makes the system susceptible to unwanted clock edges when a new instruction causes the regbank to disable or  ]
+   [enable. The change in enable bit (lo to hi) is read as a posedge. This does not happen in negedge triggerred Clocks]
+   
+   [***Another possible source of glitches is the PC (Program Counter). In the case of a positive edge triggered system]
+   [, when a positive edge causes the PC to increment, the order of bit changes in the output of counter is unknown.   ]
+   [It may be the case that the Instruction Address 'digitally fluctuate' through a number of values before attaining  ]
+   [the single, stable and required value. This would cause the instructions at the fluctuating addresses to be decoded]
+   [ and then appear on the ports of components. Now assume that two consecutive fluctuating instructions of type MOV  ]
+   [and ALU/CMP/JMP type respectively. Since these instructions appear/fluctuate at the positive edge of clock, the    ]
+   [clk value at the blocking and gates of a register in regbank will be 1. And since the two instructions will cause  ]
+   [the enable bit of the register to be asserted and de-asserted in quick succession, the sequence will cause the blo-]
+   [cking AND gate to open and close quickly (with clock serving as enable, and enable serving as clock edges). This in]
+   [turn would cause the flip-flops inside the register to written to.***  										                         ]
+   
+   See the following stackexchange question for further details on the glitch-topic:
+   https://electronics.stackexchange.com/questions/448426/why-is-my-seconds-counter-in-verilog-jumping-values-behaviour
+   
+   [Curiously enough, this glitch can be reproduced in the gtkwave-simulation.This maybe because of the gate-level imp-]
+   [lementation of the entire system. Since the program counter is also implemented at gate level, the order of bit    ]
+   [change in count will be susceptible to the arrangements of individual logic components (ripple carry adder chains  ]
+   [inside the adder). This is my overwhelming suspicion of why the glitch is visible in gtk-wave simulation aswell.   ]
+   
+   [However, the glitch may not occur if the system is falling-edge triggered. This is because the blocking AND gate is]
+   [turned-off (due to the 0 value of clk) when the instruction fluctuations occur (Just after the negative edge).	   ]
+3) If it is desired to switch to posedge-triggered operation, then besides replacing the negedge flipflops with 
+   posedge flipflops, the AND gate for Gating the Clock should be changed to OR gate with the clock-input inverted.
+   (Theory, not yet tested)
+4) I have changed the ROM and made it behaviourally generated in the top-module.
+5) As opposed to previous misconceptions, there is no race condition between the instruction arrival and clock edge.
+   If it was so, our asynchronous counters would not work. What must be noted is that given a fine implementation,
+   a negedge triggered flipflop will have its slave D-Latch shut down well before any new data is at the data ports.
+   And at no time in its operation does a flip-flop has both its latches turned on (Conducting). This would cause our
+   feed-back sequential circuits like async-counters useless.
+
+6) I have also replaced the gate-level implemented flipflop with a standard behavioral implementation (with same port
+   parameters) for the sake of synthesis on FPGA. The gate-level flipflop has a buggy behaviour, I am suspecting illegal
+   states at the boot-up, or unwated setup/holdtime delays between the two constituent latches are to blame).
+7) I am not addding a new Diagram because; a) Barely anything has changed: Only the flipflop|ROM implementation, and 
+   some bootup/reset logic. The main core is still very much the same. b) It is very easy to infer a new diagram from
+   reading the code.
+8) In iverilog-sim, I was able to test run the C0 after changing the ROM. For simulation purposes, the gate-level flipflop
+   works just fine. If changing the ROM only got the machine to work (without the 2-clock solution, as was used previously
+   while using the gate level implemented ROM), I am guessing the gate level implementation of the previous instruction MUX
+   and ROM were the reason, not the mistakenly hypothesized race condition where the instruction may change before the clock
+   edge is asserted on the registers of regbank conditions. In fact, I only started working with the C0 again because
+   while implementing the Async-Counters, I figured
+   that the theorized race condition could not have existed, or the Async-Counter would not work.
+
+September 12, 2019.

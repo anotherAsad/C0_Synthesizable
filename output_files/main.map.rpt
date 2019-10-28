@@ -1,0 +1,834 @@
+Analysis & Synthesis report for main
+Fri Aug  9 14:12:09 2019
+Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Div1
+ 12. Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Div0
+ 13. Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Mod1
+ 14. Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Mod0
+ 15. Port Connectivity Checks: "system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h7"
+ 16. Port Connectivity Checks: "system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h0"
+ 17. Port Connectivity Checks: "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4"
+ 18. Port Connectivity Checks: "system:S0"
+ 19. Port Connectivity Checks: "downClocker:DC0"
+ 20. Port Connectivity Checks: "bcdToSevSeg:DEC4"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
+ 23. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                         ;
++------------------------------------+-------------------------------------------------+
+; Analysis & Synthesis Status        ; Successful - Fri Aug  9 14:12:09 2019           ;
+; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; main                                            ;
+; Top-level Entity Name              ; main                                            ;
+; Family                             ; Cyclone II                                      ;
+; Total logic elements               ; 377                                             ;
+;     Total combinational functions  ; 369                                             ;
+;     Dedicated logic registers      ; 55                                              ;
+; Total registers                    ; 55                                              ;
+; Total pins                         ; 49                                              ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 0                                               ;
+; Embedded Multiplier 9-bit elements ; 0                                               ;
+; Total PLLs                         ; 0                                               ;
++------------------------------------+-------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                        ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                     ; Setting            ; Default Value      ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                     ; EP2C20F484C7       ;                    ;
+; Top-level entity name                                                      ; main               ; main               ;
+; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
+; Use smart compilation                                                      ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
+; Enable compact report table                                                ; Off                ; Off                ;
+; Restructure Multiplexers                                                   ; Auto               ; Auto               ;
+; Create Debugging Nodes for IP Cores                                        ; Off                ; Off                ;
+; Preserve fewer node names                                                  ; On                 ; On                 ;
+; Disable OpenCore Plus hardware evaluation                                  ; Off                ; Off                ;
+; Verilog Version                                                            ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                               ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                   ; Auto               ; Auto               ;
+; Safe State Machine                                                         ; Off                ; Off                ;
+; Extract Verilog State Machines                                             ; On                 ; On                 ;
+; Extract VHDL State Machines                                                ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                          ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                 ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                             ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                    ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                  ; On                 ; On                 ;
+; Parallel Synthesis                                                         ; On                 ; On                 ;
+; DSP Block Balancing                                                        ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                         ; On                 ; On                 ;
+; Power-Up Don't Care                                                        ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                               ; Off                ; Off                ;
+; Remove Duplicate Registers                                                 ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                       ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                     ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                      ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                  ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                       ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                        ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                             ; Off                ; Off                ;
+; Optimization Technique                                                     ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                         ; 70                 ; 70                 ;
+; Auto Carry Chains                                                          ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                       ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                      ; Off                ; Off                ;
+; Auto ROM Replacement                                                       ; On                 ; On                 ;
+; Auto RAM Replacement                                                       ; On                 ; On                 ;
+; Auto Shift Register Replacement                                            ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                            ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                              ; On                 ; On                 ;
+; Strict RAM Replacement                                                     ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                          ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                     ; Off                ; Off                ;
+; Auto RAM to Logic Cell Conversion                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                      ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                         ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                              ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                        ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                          ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                    ; Off                ; Off                ;
+; Report Parameter Settings                                                  ; On                 ; On                 ;
+; Report Source Assignments                                                  ; On                 ; On                 ;
+; Report Connectivity Checks                                                 ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                         ; Off                ; Off                ;
+; Synchronization Register Chain Length                                      ; 2                  ; 2                  ;
+; PowerPlay Power Optimization                                               ; Normal compilation ; Normal compilation ;
+; HDL message level                                                          ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                            ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                   ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                         ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                  ; 100                ; 100                ;
+; Clock MUX Protection                                                       ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                ; Off                ; Off                ;
+; Block Design Naming                                                        ; Auto               ; Auto               ;
+; SDC constraint protection                                                  ; Off                ; Off                ;
+; Synthesis Effort                                                           ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal               ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                       ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                         ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                     ; On                 ; On                 ;
+; Synthesis Seed                                                             ; 1                  ; 1                  ;
++----------------------------------------------------------------------------+--------------------+--------------------+
+
+
+Parallel compilation was disabled, but you have multiple processors available. Enable parallel compilation to reduce compilation time.
++-------------------------------------+
+; Parallel Compilation                ;
++----------------------------+--------+
+; Processors                 ; Number ;
++----------------------------+--------+
+; Number detected on machine ; 4      ;
+; Maximum allowed            ; 1      ;
++----------------------------+--------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                      ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                  ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
+; ../../misc.v                     ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/misc.v                                  ;         ;
+; alu.v                            ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/alu.v                       ;         ;
+; control.v                        ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/control.v                   ;         ;
+; core.v                           ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/core.v                      ;         ;
+; cpu.v                            ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/cpu.v                       ;         ;
+; main.v                           ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/main.v                      ;         ;
+; mathComponents.v                 ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/mathComponents.v            ;         ;
+; register.v                       ; yes             ; User Verilog HDL File        ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/register.v                  ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; /home/asad/altera/13.0sp1/quartus/libraries/megafunctions/lpm_divide.tdf      ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; /home/asad/altera/13.0sp1/quartus/libraries/megafunctions/abs_divider.inc     ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; /home/asad/altera/13.0sp1/quartus/libraries/megafunctions/sign_div_unsign.inc ;         ;
+; aglobal130.inc                   ; yes             ; Megafunction                 ; /home/asad/altera/13.0sp1/quartus/libraries/megafunctions/aglobal130.inc      ;         ;
+; db/lpm_divide_4dm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/lpm_divide_4dm.tdf       ;         ;
+; db/sign_div_unsign_ekh.tdf       ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/sign_div_unsign_ekh.tdf  ;         ;
+; db/alt_u_div_uve.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/alt_u_div_uve.tdf        ;         ;
+; db/add_sub_lkc.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/add_sub_lkc.tdf          ;         ;
+; db/add_sub_mkc.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/add_sub_mkc.tdf          ;         ;
+; db/lpm_divide_1dm.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/lpm_divide_1dm.tdf       ;         ;
+; db/sign_div_unsign_bkh.tdf       ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/sign_div_unsign_bkh.tdf  ;         ;
+; db/alt_u_div_ove.tdf             ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/alt_u_div_ove.tdf        ;         ;
+; db/lpm_divide_45m.tdf            ; yes             ; Auto-Generated Megafunction  ; /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/db/lpm_divide_45m.tdf       ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------+---------+
+
+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+; Estimated Total logic elements              ; 377   ;
+;                                             ;       ;
+; Total combinational functions               ; 369   ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 153   ;
+;     -- 3 input functions                    ; 68    ;
+;     -- <=2 input functions                  ; 148   ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 286   ;
+;     -- arithmetic mode                      ; 83    ;
+;                                             ;       ;
+; Total registers                             ; 55    ;
+;     -- Dedicated logic registers            ; 55    ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 49    ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
+; Maximum fan-out node                        ; SW[9] ;
+; Maximum fan-out                             ; 37    ;
+; Total fan-out                               ; 1226  ;
+; Average fan-out                             ; 2.59  ;
++---------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                            ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                     ; Library Name ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------+--------------+
+; |main                                     ; 369 (0)           ; 55 (0)       ; 0           ; 0            ; 0       ; 0         ; 49   ; 0            ; |main                                                                                                                   ; work         ;
+;    |bcdToSevSeg:DEC1|                     ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bcdToSevSeg:DEC1                                                                                                  ; work         ;
+;    |bcdToSevSeg:DEC2|                     ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bcdToSevSeg:DEC2                                                                                                  ; work         ;
+;    |bcdToSevSeg:DEC3|                     ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bcdToSevSeg:DEC3                                                                                                  ; work         ;
+;    |binToBCD8bit:DEC0|                    ; 161 (0)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0                                                                                                 ; work         ;
+;       |lpm_divide:Div0|                   ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div0                                                                                 ; work         ;
+;          |lpm_divide_1dm:auto_generated|  ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div0|lpm_divide_1dm:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_bkh:divider| ; 56 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div0|lpm_divide_1dm:auto_generated|sign_div_unsign_bkh:divider                       ; work         ;
+;                |alt_u_div_ove:divider|    ; 56 (56)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div0|lpm_divide_1dm:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider ; work         ;
+;       |lpm_divide:Div1|                   ; 25 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div1                                                                                 ; work         ;
+;          |lpm_divide_4dm:auto_generated|  ; 25 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div1|lpm_divide_4dm:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_ekh:divider| ; 25 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div1|lpm_divide_4dm:auto_generated|sign_div_unsign_ekh:divider                       ; work         ;
+;                |alt_u_div_uve:divider|    ; 25 (25)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Div1|lpm_divide_4dm:auto_generated|sign_div_unsign_ekh:divider|alt_u_div_uve:divider ; work         ;
+;       |lpm_divide:Mod0|                   ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod0                                                                                 ; work         ;
+;          |lpm_divide_45m:auto_generated|  ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod0|lpm_divide_45m:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_bkh:divider| ; 59 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod0|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider                       ; work         ;
+;                |alt_u_div_ove:divider|    ; 59 (59)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod0|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider ; work         ;
+;       |lpm_divide:Mod1|                   ; 21 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod1                                                                                 ; work         ;
+;          |lpm_divide_45m:auto_generated|  ; 21 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod1|lpm_divide_45m:auto_generated                                                   ; work         ;
+;             |sign_div_unsign_bkh:divider| ; 21 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod1|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider                       ; work         ;
+;                |alt_u_div_ove:divider|    ; 21 (21)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|binToBCD8bit:DEC0|lpm_divide:Mod1|lpm_divide_45m:auto_generated|sign_div_unsign_bkh:divider|alt_u_div_ove:divider ; work         ;
+;    |bytemux8:binMux|                      ; 19 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux                                                                                                   ; work         ;
+;       |bitmux8:mx0|                       ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx0                                                                                       ; work         ;
+;       |bitmux8:mx1|                       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx1                                                                                       ; work         ;
+;       |bitmux8:mx2|                       ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx2                                                                                       ; work         ;
+;       |bitmux8:mx3|                       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx3                                                                                       ; work         ;
+;       |bitmux8:mx4|                       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx4                                                                                       ; work         ;
+;       |bitmux8:mx5|                       ; 4 (4)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx5                                                                                       ; work         ;
+;       |bitmux8:mx6|                       ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx6                                                                                       ; work         ;
+;       |bitmux8:mx7|                       ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|bytemux8:binMux|bitmux8:mx7                                                                                       ; work         ;
+;    |downClocker:DC0|                      ; 49 (49)           ; 28 (28)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|downClocker:DC0                                                                                                   ; work         ;
+;    |system:S0|                            ; 123 (9)           ; 27 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0                                                                                                         ; work         ;
+;       |ROM:ROM0|                          ; 22 (22)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|ROM:ROM0                                                                                                ; work         ;
+;       |pinAbstractedCPU:CPU0|             ; 92 (2)            ; 27 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0                                                                                   ; work         ;
+;          |core:C0|                        ; 90 (2)            ; 27 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0                                                                           ; work         ;
+;             |ALU:ALU0|                    ; 38 (4)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0                                                                  ; work         ;
+;                |bytemux8:MX|              ; 22 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX                                                      ; work         ;
+;                   |bitmux8:mx0|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx0                                          ; work         ;
+;                   |bitmux8:mx1|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx1                                          ; work         ;
+;                   |bitmux8:mx2|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx2                                          ; work         ;
+;                   |bitmux8:mx3|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx3                                          ; work         ;
+;                   |bitmux8:mx4|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx4                                          ; work         ;
+;                   |bitmux8:mx5|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx5                                          ; work         ;
+;                   |bitmux8:mx6|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx6                                          ; work         ;
+;                   |bitmux8:mx7|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bytemux8:MX|bitmux8:mx7                                          ; work         ;
+;                |mathCKT:M|                ; 11 (1)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M                                                        ; work         ;
+;                   |fAddr:f0|              ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f0                                               ; work         ;
+;                   |fAddr:f1|              ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f1                                               ; work         ;
+;                   |fAddr:f2|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f2                                               ; work         ;
+;                   |fAddr:f3|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f3                                               ; work         ;
+;                   |fAddr:f4|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f4                                               ; work         ;
+;                   |fAddr:f5|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f5                                               ; work         ;
+;                   |fAddr:f6|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f6                                               ; work         ;
+;                   |fAddr:f7|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f7                                               ; work         ;
+;                |ornCKT:O1|                ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|ornCKT:O1                                                        ; work         ;
+;             |bitmux8:jmpMux|              ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bitmux8:jmpMux                                                            ; work         ;
+;             |bytemux2:BMUX2|              ; 9 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2                                                            ; work         ;
+;                |bitmux2:mx0|              ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx0                                                ; work         ;
+;                |bitmux2:mx1|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx1                                                ; work         ;
+;                |bitmux2:mx2|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx2                                                ; work         ;
+;                |bitmux2:mx3|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx3                                                ; work         ;
+;                |bitmux2:mx4|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx4                                                ; work         ;
+;                |bitmux2:mx5|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx5                                                ; work         ;
+;                |bitmux2:mx6|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx6                                                ; work         ;
+;                |bitmux2:mx7|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx7                                                ; work         ;
+;             |bytemux8:AMUX8|              ; 8 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8                                                            ; work         ;
+;                |bitmux8:mx0|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx0                                                ; work         ;
+;                |bitmux8:mx1|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx1                                                ; work         ;
+;                |bitmux8:mx2|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx2                                                ; work         ;
+;                |bitmux8:mx3|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx3                                                ; work         ;
+;                |bitmux8:mx4|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx4                                                ; work         ;
+;                |bitmux8:mx5|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx5                                                ; work         ;
+;                |bitmux8:mx6|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx6                                                ; work         ;
+;                |bitmux8:mx7|              ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux8:AMUX8|bitmux8:mx7                                                ; work         ;
+;             |instPtr:PC|                  ; 15 (0)            ; 8 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC                                                                ; work         ;
+;                |byteIncrementer:inc|      ; 7 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc                                            ; work         ;
+;                   |halfAdder:h1|          ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h1                               ; work         ;
+;                   |halfAdder:h2|          ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h2                               ; work         ;
+;                   |halfAdder:h3|          ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h3                               ; work         ;
+;                   |halfAdder:h5|          ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h5                               ; work         ;
+;                   |halfAdder:h6|          ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h6                               ; work         ;
+;                |bytemux2:MX|              ; 8 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX                                                    ; work         ;
+;                   |bitmux2:mx0|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx0                                        ; work         ;
+;                   |bitmux2:mx1|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx1                                        ; work         ;
+;                   |bitmux2:mx2|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx2                                        ; work         ;
+;                   |bitmux2:mx3|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx3                                        ; work         ;
+;                   |bitmux2:mx4|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx4                                        ; work         ;
+;                   |bitmux2:mx5|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx5                                        ; work         ;
+;                   |bitmux2:mx6|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx6                                        ; work         ;
+;                   |bitmux2:mx7|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|bytemux2:MX|bitmux2:mx7                                        ; work         ;
+;                |register:RG|              ; 0 (0)             ; 8 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG                                                    ; work         ;
+;                   |flipflop:d0|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d0                                        ; work         ;
+;                   |flipflop:d1|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d1                                        ; work         ;
+;                   |flipflop:d2|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d2                                        ; work         ;
+;                   |flipflop:d3|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d3                                        ; work         ;
+;                   |flipflop:d4|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d4                                        ; work         ;
+;                   |flipflop:d5|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d5                                        ; work         ;
+;                   |flipflop:d6|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d6                                        ; work         ;
+;                   |flipflop:d7|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|register:RG|flipflop:d7                                        ; work         ;
+;             |regBank:RB0|                 ; 15 (0)            ; 16 (0)       ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0                                                               ; work         ;
+;                |bitdecoder8:DEC|          ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bitdecoder8:DEC                                               ; work         ;
+;                |bytemux4:MX4|             ; 13 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4                                                  ; work         ;
+;                   |bitmux4:mx0|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx0                                      ; work         ;
+;                   |bitmux4:mx1|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx1                                      ; work         ;
+;                   |bitmux4:mx2|           ; 3 (3)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx2                                      ; work         ;
+;                   |bitmux4:mx3|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx3                                      ; work         ;
+;                   |bitmux4:mx4|           ; 2 (2)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx4                                      ; work         ;
+;                   |bitmux4:mx5|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx5                                      ; work         ;
+;                   |bitmux4:mx6|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx6                                      ; work         ;
+;                   |bitmux4:mx7|           ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx7                                      ; work         ;
+;                |register:RG0|             ; 0 (0)             ; 8 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0                                                  ; work         ;
+;                   |flipflop:d0|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d0                                      ; work         ;
+;                   |flipflop:d1|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d1                                      ; work         ;
+;                   |flipflop:d2|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d2                                      ; work         ;
+;                   |flipflop:d3|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d3                                      ; work         ;
+;                   |flipflop:d4|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d4                                      ; work         ;
+;                   |flipflop:d5|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d5                                      ; work         ;
+;                   |flipflop:d6|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d6                                      ; work         ;
+;                   |flipflop:d7|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d7                                      ; work         ;
+;                |register:RG3|             ; 0 (0)             ; 8 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3                                                  ; work         ;
+;                   |flipflop:d0|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d0                                      ; work         ;
+;                   |flipflop:d1|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d1                                      ; work         ;
+;                   |flipflop:d2|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d2                                      ; work         ;
+;                   |flipflop:d3|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d3                                      ; work         ;
+;                   |flipflop:d4|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d4                                      ; work         ;
+;                   |flipflop:d5|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d5                                      ; work         ;
+;                   |flipflop:d6|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d6                                      ; work         ;
+;                   |flipflop:d7|           ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG3|flipflop:d7                                      ; work         ;
+;             |register:flags|              ; 0 (0)             ; 3 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|register:flags                                                            ; work         ;
+;                |flipflop:d0|              ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|register:flags|flipflop:d0                                                ; work         ;
+;                |flipflop:d3|              ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|register:flags|flipflop:d3                                                ; work         ;
+;                |flipflop:d4|              ; 0 (0)             ; 1 (1)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |main|system:S0|pinAbstractedCPU:CPU0|core:C0|register:flags|flipflop:d4                                                ; work         ;
++-------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-----------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                    ;
++--------------------------------------------------------------------------------+--------------------------------------+
+; Register name                                                                  ; Reason for Removal                   ;
++--------------------------------------------------------------------------------+--------------------------------------+
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d7|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d6|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d5|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d4|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d3|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d2|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d1|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d0|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d7|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d6|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d5|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d4|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d3|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d2|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d1|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d0|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d7|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d6|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d5|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d4|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d3|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d2|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d1|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d0|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d7|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d6|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d5|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d4|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d3|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d2|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d1|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d0|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d7|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d6|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d5|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d4|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d3|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d2|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d1|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d0|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d7|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d6|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d5|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d4|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d3|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d2|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d1|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d0|Q ; Stuck at GND due to stuck port clock ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|register:flags|flipflop:d1|Q           ; Lost fanout                          ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|register:flags|flipflop:d2|Q           ; Lost fanout                          ;
+; system:S0|pinAbstractedCPU:CPU0|core:C0|register:flags|flipflop:d5|Q           ; Lost fanout                          ;
+; Total Number of Removed Registers = 51                                         ;                                      ;
++--------------------------------------------------------------------------------+--------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                ;
++--------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------+
+; Register name                                                                  ; Reason for Removal      ; Registers Removed due to This Register                                          ;
++--------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------+
+; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d7|Q ; Stuck at GND            ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d6|Q, ;
+;                                                                                ; due to stuck port clock ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d5|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d4|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d3|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d2|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG7|flipflop:d0|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d7|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d6|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d5|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d4|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d3|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d2|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d1|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG6|flipflop:d0|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d7|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d6|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d5|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d4|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d3|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d2|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d1|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG5|flipflop:d0|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d7|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d6|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d5|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d4|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d3|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d2|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d1|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG4|flipflop:d0|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d7|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d6|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d5|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d4|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d3|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d2|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d1|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG2|flipflop:d0|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d7|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d6|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d5|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d4|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d3|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d2|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d1|Q, ;
+;                                                                                ;                         ; system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG1|flipflop:d0|Q  ;
++--------------------------------------------------------------------------------+-------------------------+---------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 55    ;
+; Number of registers using Synchronous Clear  ; 0     ;
+; Number of registers using Synchronous Load   ; 0     ;
+; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Div1 ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                  ;
+; LPM_WIDTHD             ; 7              ; Untyped                                  ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                  ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                  ;
+; CBXI_PARAMETER         ; lpm_divide_4dm ; Untyped                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Div0 ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                  ;
+; LPM_WIDTHD             ; 4              ; Untyped                                  ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                  ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                  ;
+; CBXI_PARAMETER         ; lpm_divide_1dm ; Untyped                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Mod1 ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                  ;
+; LPM_WIDTHD             ; 4              ; Untyped                                  ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                  ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                  ;
+; CBXI_PARAMETER         ; lpm_divide_45m ; Untyped                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: binToBCD8bit:DEC0|lpm_divide:Mod0 ;
++------------------------+----------------+------------------------------------------+
+; Parameter Name         ; Value          ; Type                                     ;
++------------------------+----------------+------------------------------------------+
+; LPM_WIDTHN             ; 8              ; Untyped                                  ;
+; LPM_WIDTHD             ; 4              ; Untyped                                  ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                  ;
+; LPM_PIPELINE           ; 0              ; Untyped                                  ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                  ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                  ;
+; CBXI_PARAMETER         ; lpm_divide_45m ; Untyped                                  ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                  ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                  ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                               ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                             ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                             ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                           ;
++------------------------+----------------+------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h7" ;
++------+--------+----------+--------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                              ;
++------+--------+----------+--------------------------------------------------------------------------------------+
+; C    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.  ;
++------+--------+----------+--------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h0" ;
++------+-------+----------+---------------------------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                                               ;
++------+-------+----------+---------------------------------------------------------------------------------------+
+; B    ; Input ; Info     ; Stuck at VCC                                                                          ;
++------+-------+----------+---------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4" ;
++------+-------+----------+--------------------------------------------------------------------+
+; Port ; Type  ; Severity ; Details                                                            ;
++------+-------+----------+--------------------------------------------------------------------+
+; D    ; Input ; Info     ; Stuck at GND                                                       ;
++------+-------+----------+--------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "system:S0"                                                                           ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; Port  ; Type   ; Severity ; Details                                                                             ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+; R7    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; FLAGS ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "downClocker:DC0"     ;
++---------------+-------+----------+--------------+
+; Port          ; Type  ; Severity ; Details      ;
++---------------+-------+----------+--------------+
+; limit[21..17] ; Input ; Info     ; Stuck at VCC ;
+; limit[13..10] ; Input ; Info     ; Stuck at VCC ;
+; limit[4..0]   ; Input ; Info     ; Stuck at VCC ;
+; limit[26..24] ; Input ; Info     ; Stuck at GND ;
+; limit[9..5]   ; Input ; Info     ; Stuck at GND ;
+; limit[23]     ; Input ; Info     ; Stuck at VCC ;
+; limit[22]     ; Input ; Info     ; Stuck at GND ;
+; limit[16]     ; Input ; Info     ; Stuck at GND ;
+; limit[15]     ; Input ; Info     ; Stuck at VCC ;
+; limit[14]     ; Input ; Info     ; Stuck at GND ;
+; en            ; Input ; Info     ; Stuck at VCC ;
+; reset         ; Input ; Info     ; Stuck at VCC ;
++---------------+-------+----------+--------------+
+
+
++----------------------------------------------+
+; Port Connectivity Checks: "bcdToSevSeg:DEC4" ;
++------+-------+----------+--------------------+
+; Port ; Type  ; Severity ; Details            ;
++------+-------+----------+--------------------+
+; in   ; Input ; Info     ; Stuck at GND       ;
++------+-------+----------+--------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+    Info: Processing started: Fri Aug  9 14:12:04 2019
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off main -c main
+Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 8 design units, including 8 entities, in source file /home/asad/altera/13.0sp1/Projects/C0/misc.v
+    Info (12023): Found entity 1: hexToSevSeg
+    Info (12023): Found entity 2: bcdToSevSeg
+    Info (12023): Found entity 3: fullAdder
+    Info (12023): Found entity 4: RCAdder
+    Info (12023): Found entity 5: multiplier
+    Info (12023): Found entity 6: downClocker
+    Info (12023): Found entity 7: binToBCD16bit
+    Info (12023): Found entity 8: binToBCD8bit
+Info (12021): Found 1 design units, including 1 entities, in source file alu.v
+    Info (12023): Found entity 1: ALU
+Info (12021): Found 9 design units, including 9 entities, in source file control.v
+    Info (12023): Found entity 1: bitmux8
+    Info (12023): Found entity 2: bitmux4
+    Info (12023): Found entity 3: bitmux2
+    Info (12023): Found entity 4: bitmux16
+    Info (12023): Found entity 5: bitmux256
+    Info (12023): Found entity 6: bytemux8
+    Info (12023): Found entity 7: bytemux4
+    Info (12023): Found entity 8: bytemux2
+    Info (12023): Found entity 9: bitdecoder8
+Info (12021): Found 2 design units, including 2 entities, in source file core.v
+    Info (12023): Found entity 1: instPtr
+    Info (12023): Found entity 2: core
+Info (12021): Found 1 design units, including 1 entities, in source file cpu.v
+    Info (12023): Found entity 1: pinAbstractedCPU
+Info (12021): Found 3 design units, including 3 entities, in source file main.v
+    Info (12023): Found entity 1: ROM
+    Info (12023): Found entity 2: system
+    Info (12023): Found entity 3: main
+Info (12021): Found 11 design units, including 11 entities, in source file mathComponents.v
+    Info (12023): Found entity 1: halfAdder
+    Info (12023): Found entity 2: byteIncrementer
+    Info (12023): Found entity 3: fAddr
+    Info (12023): Found entity 4: mathCKT
+    Info (12023): Found entity 5: xorCKT
+    Info (12023): Found entity 6: ornCKT
+    Info (12023): Found entity 7: andCKT
+    Info (12023): Found entity 8: bitshiftLeft
+    Info (12023): Found entity 9: bitshiftRight
+    Info (12023): Found entity 10: rotateLeft
+    Info (12023): Found entity 11: rotateRight
+Info (12021): Found 5 design units, including 5 entities, in source file register.v
+    Info (12023): Found entity 1: my_dlatch
+    Info (12023): Found entity 2: flipflop_old
+    Info (12023): Found entity 3: flipflop
+    Info (12023): Found entity 4: register
+    Info (12023): Found entity 5: regBank
+Info (12127): Elaborating entity "main" for the top level hierarchy
+Info (12128): Elaborating entity "bytemux8" for hierarchy "bytemux8:binMux"
+Info (12128): Elaborating entity "bitmux8" for hierarchy "bytemux8:binMux|bitmux8:mx0"
+Info (12128): Elaborating entity "binToBCD8bit" for hierarchy "binToBCD8bit:DEC0"
+Warning (10230): Verilog HDL assignment warning at misc.v(136): truncated value with size 8 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at misc.v(137): truncated value with size 8 to match size of target (4)
+Warning (10230): Verilog HDL assignment warning at misc.v(138): truncated value with size 8 to match size of target (4)
+Info (12128): Elaborating entity "bcdToSevSeg" for hierarchy "bcdToSevSeg:DEC1"
+Info (12128): Elaborating entity "downClocker" for hierarchy "downClocker:DC0"
+Info (12128): Elaborating entity "system" for hierarchy "system:S0"
+Info (12128): Elaborating entity "pinAbstractedCPU" for hierarchy "system:S0|pinAbstractedCPU:CPU0"
+Info (12128): Elaborating entity "core" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0"
+Info (12128): Elaborating entity "regBank" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0"
+Info (12128): Elaborating entity "bitdecoder8" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bitdecoder8:DEC"
+Info (12128): Elaborating entity "bytemux4" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4"
+Info (12128): Elaborating entity "bitmux4" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|bytemux4:MX4|bitmux4:mx0"
+Info (12128): Elaborating entity "register" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0"
+Info (12128): Elaborating entity "flipflop" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|regBank:RB0|register:RG0|flipflop:d0"
+Info (12128): Elaborating entity "bytemux2" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2"
+Info (12128): Elaborating entity "bitmux2" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|bytemux2:BMUX2|bitmux2:mx0"
+Info (12128): Elaborating entity "ALU" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0"
+Info (12128): Elaborating entity "xorCKT" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|xorCKT:X1"
+Info (12128): Elaborating entity "andCKT" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|andCKT:A1"
+Info (12128): Elaborating entity "ornCKT" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|ornCKT:O1"
+Info (12128): Elaborating entity "mathCKT" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M"
+Info (12128): Elaborating entity "fAddr" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|mathCKT:M|fAddr:f0"
+Info (12128): Elaborating entity "bitshiftLeft" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bitshiftLeft:BSL"
+Info (12128): Elaborating entity "bitshiftRight" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|bitshiftRight:BSR"
+Info (12128): Elaborating entity "rotateLeft" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|rotateLeft:ROL"
+Info (12128): Elaborating entity "rotateRight" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|ALU:ALU0|rotateRight:ROR"
+Info (12128): Elaborating entity "instPtr" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC"
+Info (12128): Elaborating entity "byteIncrementer" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc"
+Info (12128): Elaborating entity "halfAdder" for hierarchy "system:S0|pinAbstractedCPU:CPU0|core:C0|instPtr:PC|byteIncrementer:inc|halfAdder:h0"
+Info (12128): Elaborating entity "ROM" for hierarchy "system:S0|ROM:ROM0"
+Info (13014): Ignored 33 buffer(s)
+    Info (13019): Ignored 33 SOFT buffer(s)
+Warning (19016): Clock multiplexers are found and protected
+    Warning (19017): Found clock multiplexer system:S0|ROM:ROM0|WideOr1~synth
+    Warning (19017): Found clock multiplexer system:S0|ROM:ROM0|WideOr0~synth
+Info (278001): Inferred 4 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "binToBCD8bit:DEC0|Div1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "binToBCD8bit:DEC0|Div0"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "binToBCD8bit:DEC0|Mod1"
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "binToBCD8bit:DEC0|Mod0"
+Info (12130): Elaborated megafunction instantiation "binToBCD8bit:DEC0|lpm_divide:Div1"
+Info (12133): Instantiated megafunction "binToBCD8bit:DEC0|lpm_divide:Div1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_4dm.tdf
+    Info (12023): Found entity 1: lpm_divide_4dm
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_ekh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_ekh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_uve.tdf
+    Info (12023): Found entity 1: alt_u_div_uve
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_lkc.tdf
+    Info (12023): Found entity 1: add_sub_lkc
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_mkc.tdf
+    Info (12023): Found entity 1: add_sub_mkc
+Info (12130): Elaborated megafunction instantiation "binToBCD8bit:DEC0|lpm_divide:Div0"
+Info (12133): Instantiated megafunction "binToBCD8bit:DEC0|lpm_divide:Div0" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_1dm.tdf
+    Info (12023): Found entity 1: lpm_divide_1dm
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_bkh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_bkh
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ove.tdf
+    Info (12023): Found entity 1: alt_u_div_ove
+Info (12130): Elaborated megafunction instantiation "binToBCD8bit:DEC0|lpm_divide:Mod1"
+Info (12133): Instantiated megafunction "binToBCD8bit:DEC0|lpm_divide:Mod1" with the following parameter:
+    Info (12134): Parameter "LPM_WIDTHN" = "8"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_45m.tdf
+    Info (12023): Found entity 1: lpm_divide_45m
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDG[5]" is stuck at GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND
+    Warning (13410): Pin "HEX3[0]" is stuck at GND
+    Warning (13410): Pin "HEX3[1]" is stuck at GND
+    Warning (13410): Pin "HEX3[2]" is stuck at GND
+    Warning (13410): Pin "HEX3[3]" is stuck at GND
+    Warning (13410): Pin "HEX3[4]" is stuck at GND
+    Warning (13410): Pin "HEX3[5]" is stuck at GND
+    Warning (13410): Pin "HEX3[6]" is stuck at VCC
+    Warning (13410): Pin "HEX2[1]" is stuck at GND
+Info (17049): 3 registers lost all their fanouts during netlist optimizations.
+Info (144001): Generated suppressed messages file /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/output_files/main.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 435 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 5 input pins
+    Info (21059): Implemented 44 output pins
+    Info (21061): Implemented 386 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 18 warnings
+    Info: Peak virtual memory: 643 megabytes
+    Info: Processing ended: Fri Aug  9 14:12:09 2019
+    Info: Elapsed time: 00:00:05
+    Info: Total CPU time (on all processors): 00:00:05
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in /home/asad/altera/13.0sp1/Projects/C0/backup/BCK0/output_files/main.map.smsg.
+
+

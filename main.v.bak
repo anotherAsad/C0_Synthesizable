@@ -1,0 +1,51 @@
+`include "cpu.v"
+
+module ROM(instr, addr);
+	output reg [20:0] instr;
+	input  [7:0] addr;
+	
+	always @(*) begin
+		case (addr)
+			7'd0: instr = {2'b00, 1'b0, 4'b0111, 3'b000, 3'b000, 8'b00000000};
+			7'd1: instr = {2'b01, 1'b1, 4'b0111, 3'b000, 3'b000, 8'b00001010};
+			7'd2: instr = {2'b01, 1'b1, 4'b0111, 3'b001, 3'b000, 8'b00010100};
+			7'd3: instr = {2'b10, 1'b0, 4'b1000, 3'b000, 3'b000, 8'b00100000};
+			7'd4: instr = {2'b00, 1'b0, 4'b0100, 3'b000, 3'b001, 8'b00010100};
+			default: instr = 21'b0;
+		endcase
+	end
+endmodule
+
+module testbench;
+	wire [07:0] R0, R1, R2, R3, R4, R5, R6, R7, Addr, FLAGS;
+	wire [20:0] INS, INS_PORT;
+	reg  RESET, CLK;
+	
+	integer i;
+	
+	assign INS_PORT = RESET ? {2'b00, 1'b0, 4'b0111, 3'b000, 3'b000, 8'b00000000}: INS;
+	pinAbstractedCPU CPU0(Addr, FLAGS, R0, R1, R2, R3, R4, R5, R6, R7, INS_PORT, CLK);
+	ROM              ROM0(INS, Addr);
+	
+	initial begin
+		$display("REG0\tREG1\tFLAGS\t\tADDR\tCLK");
+		
+		for(i=0; i<5; i=i+1) begin
+			RESET = !i;
+			#1 $display("\nRESET: %d", RESET);
+			#1 $display("%d\t%d\t%b\t%d\t%d", R0, R1, FLAGS, Addr, CLK);
+			#1 CLK = 0;
+			#1 $display("%d\t%d\t%b\t%d\t%d", R0, R1, FLAGS, Addr, CLK);
+			#1 CLK = 1;
+			#1 $display("%d\t%d\t%b\t%d\t%d", R0, R1, FLAGS, Addr, CLK);
+			#1 CLK = 0;
+			#1 $display("%d\t%d\t%b\t%d\t%d", R0, R1, FLAGS, Addr, CLK);
+		end
+	end
+endmodule
+
+	//   [X X] [X] [X X X X] [X X X] [X X X] [X X X | X X X X X]
+	// INSTYPE I/R  OPCODE   TGT_REG  AMUX    BMUX  | IMM
+	//	
+	//	INSTYPE: 00->JMP, 01->MOV, 10->CMP, 11->MATH
+	//  I/R    : 0->BREG, 1->IMM

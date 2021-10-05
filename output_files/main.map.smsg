@@ -1,2 +1,0 @@
-Info (10281): Verilog HDL Declaration information at misc.v(73): object "M" differs only in case from object "m" in the same scope
-Info (10281): Verilog HDL Declaration information at core.v(25): object "FLAGS" differs only in case from object "flags" in the same scope

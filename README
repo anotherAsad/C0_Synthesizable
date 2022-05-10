@@ -18,7 +18,7 @@
    [clk value at the blocking and gates of a register in regbank will be 1. And since the two instructions will cause  ]
    [the enable bit of the register to be asserted and de-asserted in quick succession, the sequence will cause the blo-]
    [cking AND gate to open and close quickly (with clock serving as enable, and enable serving as clock edges). This in]
-   [turn would cause the flip-flops inside the register to written to.												   ]
+   [turn would cause the flip-flops inside the register to written to.                                                 ]
    
    See the following stackexchange question for further details on the glitch-topic:
    https://electronics.stackexchange.com/questions/448426/why-is-my-seconds-counter-in-verilog-jumping-values-behaviour
@@ -29,7 +29,7 @@
    [inside the adder). This is my overwhelming suspicion of why the glitch is visible in gtk-wave simulation aswell.   ]
    
    [However, the glitch may not occur if the system is falling-edge triggered. This is because the blocking AND gate is]
-   [turned-off (due to the 0 value of clk) when the instruction fluctuations occur (Just after the negative edge).	   ]
+   [turned-off (due to the 0 value of clk) when the instruction fluctuations occur (Just after the negative edge).     ]
 3) If it is desired to switch to posedge-triggered operation, then besides replacing the negedge flipflops with 
    posedge flipflops, the AND gate for Gating the Clock should be changed to OR gate with the clock-input inverted.
    (Theory, not yet tested)
